@@ -1,4 +1,4 @@
-package com.sparta.japadvance.entity;
+package com.sparta.jpaadvance.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

@@ -3,6 +3,10 @@ package com.sparta.japadvance.relation;
 import com.sparta.japadvance.entity.Food;
 import com.sparta.japadvance.repository.FoodRepository;
 import com.sparta.japadvance.repository.UserRepository;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.catalina.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -37,6 +41,31 @@ public class OneToOneTest {
 
         userRepository.save(user);
         foodRepository.save(food);
+    }
+
+    package com.sparta.jpaadvance.entity;
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+    @Entity
+    @Getter
+    @Setter
+    @Table(name = "users")
+    public class User {
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
+        private String name;
+
+        @OneToOne(mappedBy = "user")
+        private Food food;
+
+        public void addFood(Food food) {
+            this.food = food;
+            food.setUser(this);
+        }
     }
 
 }
